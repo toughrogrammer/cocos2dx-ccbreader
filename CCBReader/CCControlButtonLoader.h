@@ -28,6 +28,7 @@ class CCControlButtonLoader : public CCControlLoader {
         virtual void onHandlePropTypeColor3(CCNode * pNode, CCNode * pParent, const char * pPropertyName, ccColor3B pCCColor3B, CCBReader * pCCBReader);
 		virtual void onHandlePropTypeColor4(CCNode * pNode, CCNode * pParent, const char* pPropertyName, ccColor4F pCCColor4F, CCBReader * pCCBReader);
 		virtual void onHandlePropTypeBlock(CCNode * pNode, CCNode * pParent, const char* pPropertyName, BlockData * pBlockData, CCBReader * pCCBReader);
+		virtual void onHandlePropTypeBlockCCControl(CCNode * pNode, CCNode * pParent, const char * pPropertyName, BlockCCControlData * pBlockCCControlData, CCBReader * pCCBReader);
 };
 
 NS_CC_EXT_END

@@ -259,7 +259,22 @@ void CCControlButtonLoader::onHandlePropTypeColor4(CCNode * pNode, CCNode * pPar
 
 void CCControlButtonLoader::onHandlePropTypeBlock(CCNode * pNode, CCNode * pParent, const char* pPropertyName, BlockData * pBlockData, CCBReader * pCCBReader)
 {
-
+	CCNodeLoader::onHandlePropTypeBlock( pNode, pParent, pPropertyName, pBlockData, pCCBReader );
 }
+
+
+void CCControlButtonLoader::onHandlePropTypeBlockCCControl(CCNode * pNode, CCNode * pParent, const char * pPropertyName, BlockCCControlData * pBlockCCControlData, CCBReader * pCCBReader)
+{
+	if( strcmp( pPropertyName, PROPERTY_BLOCK ) == 0 )
+	{
+		((CCControl *)pNode)->addTargetWithActionForControlEvents(pBlockCCControlData->mTarget, pBlockCCControlData->mSELCCControlHandler, pBlockCCControlData->mControlEvents);
+	}
+	else
+	{
+		CCNodeLoader::onHandlePropTypeBlockCCControl( pNode, pParent, pPropertyName, pBlockCCControlData, pCCBReader );
+	}
+}
+
+
 
 NS_CC_EXT_END;

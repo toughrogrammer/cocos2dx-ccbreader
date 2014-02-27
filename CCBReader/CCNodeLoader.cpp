@@ -340,11 +340,11 @@ void CCNodeLoader::parseProperties(CCNode * pNode, CCNode * pParent, CCBReader *
                 break;
             }
             case kCCBPropTypeBlock: {
-                BlockData * blockData = this->parsePropTypeBlock(pNode, pParent, pCCBReader);
-                if(setProp) {
-                    this->onHandlePropTypeBlock(pNode, pParent, propertyName.c_str(), blockData, pCCBReader);
+				BlockCCControlData * blockCCControlData = this->parsePropTypeBlockCCControl(pNode, pParent, pCCBReader);
+                if(setProp && blockCCControlData != NULL) {
+                    this->onHandlePropTypeBlockCCControl(pNode, pParent, propertyName.c_str(), blockCCControlData, pCCBReader);
                 }
-                CC_SAFE_DELETE(blockData);
+                CC_SAFE_DELETE(blockCCControlData);
                 break;
             }
             case kCCBPropTypeBlockCCControl: {
@@ -818,7 +818,6 @@ BlockData * CCNodeLoader::parsePropTypeBlock(CCNode * pNode, CCNode * pParent, C
 BlockCCControlData * CCNodeLoader::parsePropTypeBlockCCControl(CCNode * pNode, CCNode * pParent, CCBReader * pCCBReader) {
     std::string selectorName = pCCBReader->readCachedString();
     int selectorTarget = pCCBReader->readInt(false);
-    int controlEvents = pCCBReader->readInt(false);
 
     if(selectorTarget != kCCBTargetTypeNone) {
         
@@ -853,7 +852,7 @@ BlockCCControlData * CCNodeLoader::parsePropTypeBlockCCControl(CCNode * pNode, C
                         blockCCControlData->mSELCCControlHandler = selCCControlHandler;
                         
                         blockCCControlData->mTarget = target;
-                        blockCCControlData->mControlEvents = controlEvents;
+						blockCCControlData->mControlEvents = CCControlEventTouchDown;
                         
                         return blockCCControlData;
                     }
@@ -867,11 +866,13 @@ BlockCCControlData * CCNodeLoader::parsePropTypeBlockCCControl(CCNode * pNode, C
             if(selectorTarget == kCCBTargetTypeDocumentRoot) {
                 pCCBReader->addDocumentCallbackNode(pNode);
                 pCCBReader->addDocumentCallbackName(selectorName);
-                pCCBReader->addDocumentCallbackControlEvents(controlEvents);
+                //pCCBReader->addDocumentCallbackControlEvents(controlEvents);
+				pCCBReader->addDocumentCallbackControlEvents( CCControlEventTouchDown );
             } else {
                 pCCBReader->addOwnerCallbackNode(pNode);
                 pCCBReader->addOwnerCallbackName(selectorName);
-                pCCBReader->addOwnerCallbackControlEvents(controlEvents);
+                //pCCBReader->addOwnerCallbackControlEvents(controlEvents);
+				pCCBReader->addOwnerCallbackControlEvents( CCControlEventTouchDown );
             }
         }
     }
