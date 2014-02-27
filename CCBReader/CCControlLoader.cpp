@@ -6,6 +6,7 @@ NS_CC_EXT_BEGIN
 #define PROPERTY_ENABLED "enabled"
 #define PROPERTY_SELECTED "selected"
 #define PROPERTY_CCCONTROL "ccControl"
+#define PROPERTY_MAXSIZE "maxSize"
 
 void CCControlLoader::onHandlePropTypeCheck(CCNode * pNode, CCNode * pParent, const char * pPropertyName, bool pCheck, CCBReader * pCCBReader) {
     if(strcmp(pPropertyName, PROPERTY_ENABLED) == 0) {
@@ -23,6 +24,17 @@ void CCControlLoader::onHandlePropTypeBlockCCControl(CCNode * pNode, CCNode * pP
     } else {
         CCNodeLoader::onHandlePropTypeBlockCCControl(pNode, pParent, pPropertyName, pBlockCCControlData, pCCBReader);
     }
+}
+
+
+void CCControlLoader::onHandlePropTypeSize(CCNode * pNode, CCNode * pParent, const char * pPropertyName, CCSize pSize, CCBReader * pCCBReader)
+{
+	if( strcmp( pPropertyName, PROPERTY_MAXSIZE ) == 0 )
+	{
+		// How can I handle property of max size?
+	}
+	else
+		CCNodeLoader::onHandlePropTypeSize( pNode, pParent, pPropertyName, pSize, pCCBReader );
 }
 
 NS_CC_EXT_END
