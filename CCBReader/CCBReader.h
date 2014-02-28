@@ -29,7 +29,7 @@
     return NULL; \
 }
 
-#define kCCBVersion 5
+#define kCCBVersion 6
 
 enum {
     kCCBPropTypePosition = 0,
@@ -244,6 +244,10 @@ public:
      *  @js ctor
      */
     CCBReader();
+
+
+	static CCBReader* create( CCNodeLoaderLibrary *lib );
+
    
     void setCCBRootPath(const char* pCCBRootPath);
     const std::string& getCCBRootPath() const;

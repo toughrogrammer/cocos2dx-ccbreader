@@ -836,12 +836,12 @@ BlockCCControlData * CCNodeLoader::parsePropTypeBlockCCControl(CCNode * pNode, C
                     CCBSelectorResolver * targetAsCCBSelectorResolver = dynamic_cast<CCBSelectorResolver *>(target);
                     
                     if(targetAsCCBSelectorResolver != NULL) {
-                        selCCControlHandler = targetAsCCBSelectorResolver->onResolveCCBCCControlSelector(target, selectorName.c_str());
+                        selCCControlHandler = targetAsCCBSelectorResolver->onResolveCCBCCControlSelector(target, pNode, selectorName.c_str());
                     }
                     if(selCCControlHandler == 0) {
                         CCBSelectorResolver * ccbSelectorResolver = pCCBReader->getCCBSelectorResolver();
                         if(ccbSelectorResolver != NULL) {
-                            selCCControlHandler = ccbSelectorResolver->onResolveCCBCCControlSelector(target, selectorName.c_str());
+                            selCCControlHandler = ccbSelectorResolver->onResolveCCBCCControlSelector(target, pNode, selectorName.c_str());
                         }
                     }
                     

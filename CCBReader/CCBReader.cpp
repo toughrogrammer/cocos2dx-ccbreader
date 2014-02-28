@@ -143,6 +143,22 @@ CCBReader::~CCBReader() {
     setAnimationManager(NULL);
 }
 
+
+CCBReader* CCBReader::create( CCNodeLoaderLibrary *lib )
+{
+	CCBReader *reader = new CCBReader( lib );
+	// CCBReader::init function is automatically called in Constructor
+	if( reader /*&& reader->init()*/ )
+	{
+		reader->autorelease();
+		return reader;
+	}
+
+	CC_SAFE_DELETE( reader );
+	return NULL;
+}
+
+
 void CCBReader::setCCBRootPath(const char* pCCBRootPath)
 {
     CCAssert(pCCBRootPath != NULL, "");

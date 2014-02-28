@@ -28,7 +28,7 @@ class CCBSelectorResolver {
         virtual ~CCBSelectorResolver() {};
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName) = 0;
     virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName) { return NULL; };
-    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName) = 0;
+    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, CCNode *pControl, const char* pSelectorName) = 0;
 };
 
 /**
